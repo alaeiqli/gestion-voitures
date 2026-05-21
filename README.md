@@ -1,4 +1,4 @@
-# 🚗 Application de Gestion de Voitures - Fullstack
+# 🚗 Application de Gestion de Voitures - Fullstack - Réalisée par: ALAE IQLI / Filière: D2S
 
 Ce dépôt unique regroupe l'ensemble de l'application de gestion de voitures, divisée en un frontend développé avec **React** et un backend avec **Spring Boot**.
 Grâce à l'orchestration avec **Docker Compose**, l'intégralité de l'architecture (y compris la base de données **MariaDB**) est configurée pour s'exécuter en une seule ligne de commande, sans aucune installation manuelle requise.
