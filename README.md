@@ -61,12 +61,4 @@ docker-compose down
 
 ---
 
-## 📤 Comment envoyer ce README sur votre GitHub
 
-Une fois le fichier enregistré à la racine de votre dossier, envoyez-le en ligne avec ces dernières commandes :
-
-```bash
-git add README.md
-git commit -m "Docs: add complete fullstack README for docker-compose"
-git push
-```
