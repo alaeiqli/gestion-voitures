@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # 1. Le conteneur de la base de données MariaDB
   db:
@@ -12,24 +10,31 @@ services:
       - "3306:3306"
     volumes:
       - mariadb_data:/var/lib/mysql
+    # 🆕 On ajoute une vérification de l'état de la base
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   # 2. Le conteneur du Backend Spring Boot
   backend:
-    build: ./backend
+    build: ./SpringDataRest
     container_name: carpooling-backend
     ports:
       - "8081:8081"
     environment:
-      # On remplace host.docker.internal par le nom du service 'db' de Docker
       - SPRING_DATASOURCE_URL=jdbc:mariadb://db:3306/springboot
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=root
+    # 🆕 On modifie le depends_on pour attendre que la DB soit saine (healthy)
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   # 3. Le conteneur du Frontend React
   frontend:
-    build: ./frontend
+    build: ./myapp
     container_name: carpooling-frontend
     ports:
       - "3000:80"
